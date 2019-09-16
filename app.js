@@ -1,67 +1,57 @@
-const ROCK = 1,
-	PAPER = 2,
-	SCISSORS = 3;
-let playerChoice, computerChoice, status;
+const ROCK = 0,
+	PAPER = 1,
+	SCISSORS = 2;
+const LOSE = -1,
+	DRAW = 0,
+	WIN = 1;
+let playerChoice, computerChoice;
 let playerScore = 0,
 	computerScore = 0;
+let results = [ [ DRAW, LOSE, WIN ], [ WIN, DRAW, LOSE ], [ LOSE, WIN, DRAW ] ];
 
-$("#rock").on("click", function() {
-	playerChoice = ROCK;
-	play();
-});
-$("#paper").on("click", function() {
-	playerChoice = PAPER;
-	play();
-});
-$("#scissors").on("click", function() {
-	playerChoice = SCISSORS;
-	play();
-});
 $("#reset").on("click", function() {
 	reset();
 });
-
+$(".card").on("click", function() {
+	getPlayerChoice($(this)[0].id);
+	play();
+});
 $(".card").hover(function() {
 	$(this).children("i").toggleClass("fas far");
 });
 
-function choose() {
-	computerChoice = Math.floor(Math.random() * 3) + 1;
+function getPlayerChoice(id) {
+	switch (id) {
+		case "rock":
+			playerChoice = ROCK;
+			break;
+		case "paper":
+			playerChoice = PAPER;
+			break;
+		case "scissors":
+			playerChoice = SCISSORS;
+			break;
+	}
+}
+
+function getComputerChoice() {
+	computerChoice = Math.floor(Math.random() * 3);
 }
 
 function play() {
-	// 1 3
-	// 2 1
-	// 3 2
-	choose();
-	if (playerChoice === ROCK) {
-		if (computerChoice === ROCK) {
+	getComputerChoice();
+	switch (results[playerChoice][computerChoice]) {
+		case WIN:
+			playerScore++;
+			displayStatus("win");
+			break;
+		case DRAW:
 			displayStatus("draw");
-		} else if (computerChoice === PAPER) {
-			playerScore++;
-			displayStatus("win");
-		} else {
+			break;
+		case LOSE:
 			computerScore++;
 			displayStatus("lose");
-		}
-	} else if (playerChoice === PAPER) {
-		if (computerChoice === ROCK) {
-			computerScore++;
-			displayStatus("lose");
-		} else if (computerChoice === PAPER) {
-			displayStatus("draw");
-		} else {
-			playerScore++;
-			displayStatus("win");
-		}
-	} else {
-		if (computerChoice === ROCK) {
-			computerScore++;
-			displayStatus("lose");
-		} else if (computerChoice === PAPER) {
-			playerScore++;
-			displayStatus("win");
-		} else displayStatus("draw");
+			break;
 	}
 	adjustScore();
 }
