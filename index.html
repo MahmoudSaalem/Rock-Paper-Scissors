@@ -15,20 +15,39 @@
 
 <body>
     <div id="container">
-        <h1>GAME ON</h1>
+        <h1 id="status">GAME ON</h1>
         <div class="button" id="reset">
             <p class="btnText">RESET</p>
             <div class="btnTwo">
                 <p class="btnText2"><i class="fas fa-redo-alt"></i></p>
             </div>
         </div>
-        <div id="scoreBoard">
-            <div id="player">Player: <span id="playerScore">0</span></div>
-            <div id="computer">Computer: <span id="computerScore">0</span></div>
+        <div class="card common wrap" id="rock">
+            <i class="old far fa-hand-rock"></i>
+            <i class="new fas fa-hand-rock"></i>
         </div>
-        <div class="card" id="rock"><i class="far fa-hand-rock"></i></div>
-        <div class="card" id="paper"><i class="far fa-hand-paper"></i></div>
-        <div class="card" id="scissors"><i class="far fa-hand-scissors"></i></div>
+        <div class="card common wrap" id="paper">
+            <i class="old far fa-hand-paper"></i>
+            <i class="new fas fa-hand-paper"></i>
+        </div>
+        <div class="card common wrap" id="scissors">
+            <i class="old far fa-hand-scissors"></i>
+            <i class="new fas fa-hand-scissors"></i>
+        </div>
+    </div>
+
+    <div id="display">
+        <div id="scoreBoard">
+            <div id="player">Player: <span id="playerScore">0</span>
+                <i class="symbol" id="playerSymbol"></i>
+            </div>
+            <div id="computer">Computer: <span id="computerScore">0</span>
+                <i class="symbol" id="computerSymbol"></i>
+            </div>
+        </div>
+
+        <div class="display common"><i id="playerDisplay" class="fas fa-question"></i></div>
+        <div class="display common"><i id="computerDisplay" class="fas fa-question"></i></div>
     </div>
 
     <script src="app.js"></script>

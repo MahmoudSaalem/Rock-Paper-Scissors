@@ -13,18 +13,26 @@ body {
 h1 {
 	font-weight: normal;
 	color: #f7f7f7;
+	text-transform: uppercase;
 }
 
 #container {
-	width: 500px;
+	width: 600px;
 	margin: 0 auto;
 	text-align: center;
 	overflow: hidden;
 }
 
+#display {
+	width: 850px;
+	height: 50px;
+	margin: 75px auto;
+}
+
 #scoreBoard {
 	color: #f7f7f7;
 	overflow: hidden;
+	width: 90%;
 	/* border: 2px solid rgba(255, 255, 255, 0.2); */
 	border: 2px solid rgba(150, 50, 125, 0.6);
 	box-sizing: content-box;
@@ -41,25 +49,57 @@ h1 {
 #player {
 	border-right: 1px solid rgba(150, 50, 125, 0.6);
 	box-sizing: border-box;
+	padding-left: 20px;
+}
+
+#computer {
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+
+#playerSymbol {
+	float: right;
+	margin-right: 10px;
+}
+
+#computerSymbol {
+	float: left;
+	margin-left: 10px;
+}
+
+.symbol {
+	width: 20px;
+	height: 19px;
 }
 
 .card {
 	width: 30%;
-	height: 120px;
-	line-height: 120px;
-	font-size: 80px;
+	height: 180px;
+	line-height: 180px;
+	font-size: 100px;
+	margin: 1.66%;
+}
+
+.card:hover {
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+.common {
 	background: rgba(255, 255, 255, 0.05);
 	float: left;
-	margin: 1.66%;
 	color: #f7f7f7;
 	transition: all 0.2s;
 	text-align: center;
 	border-radius: 15px;
 }
 
-.card:hover {
-	background: rgba(255, 255, 255, 0.2);
-	cursor: pointer;
+.display {
+	width: 40%;
+	height: 340px;
+	line-height: 340px;
+	font-size: 200px;
+	margin: 5%;
 }
 
 .button {
@@ -107,4 +147,24 @@ h1 {
 .button:active {
 	/*Clicked and held*/
 	box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+.new {
+	opacity: 0;
+	display: none;
+}
+
+.old,
+.new {
+	transition: opacity 0.4s linear;
+}
+
+.wrap:hover .old {
+	opacity: 0;
+	display: none;
+}
+.wrap:hover .new {
+	opacity: 1;
+	display: block;
+	line-height: 180px;
 }
